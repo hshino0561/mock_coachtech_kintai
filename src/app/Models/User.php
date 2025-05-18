@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * ユーザーに紐づく休憩記録（BreakLog）のリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function breakLogs()
+    {
+        return $this->hasMany(BreakLog::class);
+    }
 }

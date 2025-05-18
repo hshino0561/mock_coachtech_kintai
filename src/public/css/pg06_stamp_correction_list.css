@@ -1,0 +1,66 @@
+.request-list-container {
+    background-color: #f3f2f4;
+    padding: 50px 20px;
+    min-height: 100vh;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    border-left: 5px solid #000;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.tabs a {
+    color: #333;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 5px;
+}
+
+.tabs a.active {
+    border-color: #000;
+}
+
+.tab-divider {
+    border: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+
+.request-table-wrapper {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.request-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: center;
+}
+
+.request-table th,
+.request-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.request-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.request-table a {
+    color: #000;
+    text-decoration: underline;
+}
