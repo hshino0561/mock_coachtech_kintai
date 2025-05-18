@@ -301,10 +301,13 @@ button {
 */
 
 button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    appearance: button;
+    /* 標準プロパティ */
     -webkit-appearance: button;
+    /* Safari等の旧ブラウザ対応 */
 }
 
 /**
@@ -393,10 +396,12 @@ textarea {
 */
 
 [type="search"] {
+    appearance: textfield;
+    /* 標準プロパティ */
     -webkit-appearance: textfield;
-    /* 1 */
+    /* 旧Safariなどの互換用 */
     outline-offset: -2px;
-    /* 2 */
+    /* 内側に寄せたい意図があれば維持 */
 }
 
 /**

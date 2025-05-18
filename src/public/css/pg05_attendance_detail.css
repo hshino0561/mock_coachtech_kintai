@@ -1,0 +1,160 @@
+body {
+    background-color: #F0EFF2;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.attendance-detail-wrapper {
+    max-width: 900px;
+    margin: 100px auto;
+    padding: 0 20px;
+}
+
+.detail-title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.detail-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #000;
+    position: relative;
+    padding-left: 20px;
+}
+
+.detail-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 8px;
+    height: 36px;
+    background-color: #000;
+}
+
+.detail-card {
+    background: #fff;
+    border: 1px solid #E1E1E1;
+    border-radius: 10px;
+    padding: 40px 60px;
+    box-sizing: border-box;
+}
+
+/* 各行のレイアウト */
+.detail-row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 20px 0;
+    border-bottom: 2px solid #E1E1E1;
+}
+
+/* 最後の備考は線なし */
+.detail-row.note-row {
+    border-bottom: none;
+}
+
+.label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #737373;
+    letter-spacing: 0.15em;
+    min-width: 90px;
+}
+
+.value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: 0.15em;
+    padding: 4px 12px;
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;
+    min-width: 80px;
+    text-align: center;
+    background-color: #fff;
+}
+
+/* 名前・日付表示など囲い不要用 */
+.value.no-border {
+    border: none;
+    background: transparent;
+    padding: 0;
+    min-width: auto;
+}
+
+.value[type="time"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    background-color: #fff;
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;
+    width: 100px;
+    height: 32px;
+    padding: 4px 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 0.15em;
+    text-align: center;
+}
+
+/* Firefox対策：数字スピンボタン除去 */
+input[type="time"]::-webkit-inner-spin-button,
+input[type="time"]::-webkit-clear-button,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+/* Edge・Chromeでも強制非表示 */
+input[type="time"]::-ms-clear,
+input[type="time"]::-ms-expand {
+    display: none;
+}
+
+.note-box {
+    width: 316px;
+    height: 72px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #000000;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+    background-color: #fff;
+    resize: none;
+}
+
+/* 修正ボタン用 */
+.edit-button-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-edit {
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    width: 130px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-edit:hover {
+    background-color: #333;
+}

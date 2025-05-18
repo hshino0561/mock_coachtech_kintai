@@ -1,0 +1,137 @@
+/* 全体背景とフォント */
+body {
+    background-color: #F0EFF2;
+    margin: 0;
+    font-family: 'Noto Sans JP', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 勤怠一覧ページ全体 */
+.attendance-list-page {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #F0EFF2;
+}
+
+/* タイトル */
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.page-title::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 32px;
+    background-color: #000;
+    margin-right: 12px;
+    border-radius: 2px;
+}
+
+/* カレンダーナビゲーション */
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 12px 32px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* 月表示部分 */
+.calendar-nav .current-month {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000;
+}
+
+/* カレンダーアイコン */
+.calendar-nav i.fa-calendar-days {
+    font-size: 16px;
+    color: #333;
+}
+
+/* 前月・翌月ナビゲーション */
+.calendar-nav .month-nav {
+    background: none;
+    border: none;
+    color: #737373;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+}
+
+.calendar-nav .month-nav:hover {
+    text-decoration: underline;
+}
+
+/* テーブルラッパー */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+/* 勤怠テーブル本体 */
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    font-size: 14px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+/* テーブルセル */
+.attendance-table th,
+.attendance-table td {
+    text-align: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    white-space: nowrap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.15em;
+}
+
+/* ヘッダセル */
+.attendance-table th {
+    background-color: #ffffff;
+    color: #737373;
+}
+
+/* データセル */
+.attendance-table td {
+    color: #737373;
+}
+
+/* 詳細リンク */
+.detail-link {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.detail-link:hover {
+    text-decoration: underline;
+}
