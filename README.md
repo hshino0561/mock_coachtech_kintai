@@ -60,7 +60,7 @@ php artisan test tests/Feature/Attendance --filter=LeaveFeatureTest</br>
 10. 勤怠一覧情報取得機能（一般ユーザー）</br>
 php artisan test tests/Feature/Attendance --filter=AttendanceListFeatureTest</br>
 11. 勤怠詳細情報取得機能（一般ユーザー）</br>
-php artisan test tests/Feature/Attendance --filter=AttendanceDetailFeatureTest</br>
+php artisan test tests/Feature/Attendance/AttendanceDetailFeatureTest.php</br>
 12. 勤怠詳細情報修正機能（一般ユーザー）</br>
 php artisan test tests/Feature/Attendance --filter=AttendanceCorrectionFeatureTest</br>
 13. 勤怠一覧情報取得機能（管理者）</br>
