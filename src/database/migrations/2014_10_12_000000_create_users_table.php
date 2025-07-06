@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->boolean('is_first_login')->default(false); // 初回ログイン管理用カラムを追加
             $table->string('work_status')->nullable();
             $table->timestamps();
         });

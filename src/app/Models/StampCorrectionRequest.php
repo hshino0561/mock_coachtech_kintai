@@ -19,20 +19,32 @@ class StampCorrectionRequest extends Model
         'break_start',
         'break_end',
         'memo',
-        'reason',
         'status',
-    ];    
+    ];
+
+    protected $casts = [
+        'attendance_date' => 'date',
+        'start_time' => 'datetime:H:i',
+        'end_time' => 'datetime:H:i',
+        'break_start' => 'datetime:H:i',
+        'break_end' => 'datetime:H:i',
+    ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    } 
-    
-    public function getAttendanceDateAttribute()
-    {
-    return optional($this->attendance)->date;
     }
 
+    public function attendance()
+    {
+        return $this->belongsTo(Attendance::class);
+    }
+
+    public function breakCorrectionRequests()
+    {
+        return $this->hasMany(BreakCorrectionRequest::class);
+    }
+    
     public function getStatusLabelAttribute(): string
     {
         return match ($this->status) {
@@ -40,5 +52,5 @@ class StampCorrectionRequest extends Model
             'rejected' => '却下',
             default => '承認待ち', // nullや空欄も含む
         };
-    }    
+    }
 }

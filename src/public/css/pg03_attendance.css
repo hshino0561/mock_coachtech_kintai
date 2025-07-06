@@ -1,80 +1,98 @@
 .attendance-container {
     text-align: center;
     background-color: #e5e5eb;
+    /* 背景 */
     min-height: calc(100vh - 80px);
-    /* ヘッダー高さを考慮 */
-    padding-top: 100px;
-    font-family: sans-serif;
+    /* ヘッダー考慮 */
+    padding-top: 150px;
+    font-family: 'Inter', sans-serif;
 }
 
+/* ステータスラベル（勤務外など） */
 .status-label {
     display: inline-block;
-    background-color: #ddd;
-    color: #666;
-    font-size: 14px;
-    padding: 4px 16px;
-    border-radius: 20px;
-    margin-bottom: 20px;
+    background-color: #C8C8C8;
+    color: #696969;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 8px 24px;
+    border-radius: 50px;
 }
 
+/* 日付 */
 .date {
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 40px;
+    font-weight: 400;
+    color: #000;
+    margin-top: 20px;
+    margin-bottom: -40px;
+    line-height: 48px;
 }
 
+/* 時刻（08:00など） */
 .time {
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 30px;
+    font-size: 80px;
+    font-weight: 700;
+    color: #000;
+    line-height: 97px;
+    margin-bottom: 115px;
 }
 
-.btn-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+/* ボタン共通 */
+button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 0.15em;
+    border: none;
+    cursor: pointer;
 }
 
+/* 出勤ボタン */
 .btn-start {
     background-color: #000;
     color: #fff;
-    font-size: 18px;
-    padding: 12px 40px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+    padding: 15px 60px;
+    border-radius: 20px;
 }
 
+/* 退勤ボタン */
 .btn-end {
     background-color: #000;
     color: #fff;
-    font-weight: bold;
-    padding: 12px 32px;
-    border-radius: 12px;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
+    padding: 15px 80px;
+    border-radius: 20px;
 }
 
-/* 休憩入ボタン */
+/* 休憩入 */
 .btn-break {
     background-color: #fff;
     color: #000;
-    font-weight: bold;
-    padding: 12px 32px;
-    border-radius: 12px;
-    border: 2px solid #000;
-    font-size: 16px;
-    cursor: pointer;
+    padding: 15px 60px;
+    border-radius: 20px;
 }
 
-/* 休憩戻ボタン */
+/* 休憩戻 */
 .btn-break-return {
     background-color: #f0f0f0;
-    color: #000000;
-    font-size: 18px;
-    padding: 12px 40px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
+    color: #000;
+    padding: 15px 60px;
+    border-radius: 20px;
+}
+
+/* ボタン横並び */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-top: 20px;
+}
+
+/* メッセージ表示 */
+.flash-message {
+    font-size: 26px;
+    font-weight: 700;
+    color: #000;
+    margin-top: 40px;
 }

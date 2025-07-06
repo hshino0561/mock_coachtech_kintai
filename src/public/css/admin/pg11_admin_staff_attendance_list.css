@@ -1,0 +1,149 @@
+body {
+    background-color: #F0EFF2;
+    margin: 0;
+    padding: 0;
+}
+
+/* 全体背景 */
+.staff-attendance-page {
+    background-color: #F0EFF2;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    margin-top: 60px;
+}
+
+/* タイトル */
+.title-area {
+    width: 900px;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 0px;
+    background-color: #F0EFF2;
+}
+
+.page-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #000;
+    margin-top: 0px;
+    margin-left: 15px;
+}
+
+.title-line {
+    position: absolute;
+    top: 20px;
+    left: -25px;
+    width: 40px;
+    height: 8px;
+    background-color: #000;
+    transform: rotate(-90deg);
+}
+
+/* 月ナビゲーション全体 */
+.calendar-nav {
+    width: 900px;
+    height: 60px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+/* 前月・翌月リンク */
+.month-nav {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #737373;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 中央年月表示 */
+.month-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* カレンダーアイコン */
+.month-center img {
+    width: 20px;
+    height: 20px;
+}
+
+/* 年月文字 */
+.current-month {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+}
+
+/* 勤怠テーブル */
+.attendance-table {
+    width: 900px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.table-header,
+.table-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 0.6fr;
+    padding: 10px 58px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.15em;
+    border-bottom: 3px solid #E1E1E1;
+}
+
+/* 出勤・退勤 ヘッダーのみ右にずらす */
+.table-header .col-start {
+    padding-left: 8px;
+}
+
+.table-header .col-end {
+    padding-left: 8px;
+}
+
+.table-header {
+    color: #737373;
+    border-bottom: 3px solid #E1E1E1;
+}
+
+.table-row {
+    color: #737373;
+}
+
+.table-row .col-detail a {
+    color: #000000;
+    text-decoration: none;
+}
+
+/* CSVボタン */
+.csv-button-area {
+    width: 900px;
+    margin: 50px auto 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.csv-button {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

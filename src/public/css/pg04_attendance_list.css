@@ -7,17 +7,17 @@ body {
 
 /* 勤怠一覧ページ全体 */
 .attendance-list-page {
-    max-width: 900px;
-    margin: 40px auto;
+    max-width: 1200px;
+    margin: 10px auto;
     padding: 30px;
     background-color: #F0EFF2;
 }
 
 /* タイトル */
 .page-title {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
-    margin-bottom: 24px;
+    margin-bottom: 46px;
     display: flex;
     align-items: center;
 }
@@ -38,11 +38,10 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
-    padding: 12px 32px;
+    padding: 14px 32px;
     border-radius: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 46px;
     width: 100%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 /* 月表示部分 */
@@ -80,10 +79,6 @@ body {
     text-decoration: none;
 }
 
-.calendar-nav .month-nav:hover {
-    text-decoration: underline;
-}
-
 /* テーブルラッパー */
 .table-wrapper {
     overflow-x: auto;
@@ -104,7 +99,7 @@ body {
 .attendance-table td {
     text-align: center;
     padding: 14px 16px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 3px solid #e0e0e0;
     white-space: nowrap;
     font-family: 'Inter';
     font-style: normal;
@@ -132,6 +127,25 @@ body {
     font-weight: bold;
 }
 
-.detail-link:hover {
-    text-decoration: underline;
+/* 日付以外のヘッダー、データセルを左寄せ */
+.attendance-table th:not(:nth-child(1)),
+.attendance-table td:not(:nth-child(1)) {
+    text-align: left;
+    padding: 10px 36px;
+}
+
+/* 日付列（1列目）のヘッダーとデータセルだけ左寄せ + 左余白を少なめに */
+.attendance-table th:nth-child(1) {
+    text-align: left;
+    padding-left: 63px;
+}
+
+.attendance-table td:nth-child(1) {
+    text-align: left;
+    padding-left: 60px;
+}
+
+.attendance-table th:last-child,
+.attendance-table td:last-child {
+    padding-right: 46px;
 }

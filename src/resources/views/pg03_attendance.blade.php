@@ -20,8 +20,8 @@
         @endif
     </p>
 
-    <p class="date">{{ \Carbon\Carbon::now()->locale('ja')->isoFormat('YYYY年M月D日(ddd)') }}</p>
-    <p class="time">{{ \Carbon\Carbon::now()->format('H:i') }}</p>
+    <p class="date" id="main-date">{{ \Carbon\Carbon::now()->locale('ja')->isoFormat('YYYY年M月D日(ddd)') }}</p>
+    <p class="time" id="main-time">{{ \Carbon\Carbon::now()->format('H:i') }}</p>
 
     @if ($work_status === 'before_work') 
         <form action="{{ route('attendance.start') }}" method="POST"> 
@@ -51,4 +51,36 @@
         <p class="flash-message">{{ session('message') }}</p>
     @endif
 </div>
+@endsection
+
+@section('js')
+<script>
+    function updateTime() {
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+
+        // 時刻更新
+        const mainTime = document.getElementById('main-time');
+        if (mainTime) {
+            mainTime.textContent = `${h}:${m}`;
+        }
+
+        // 日付更新（YYYY年M月D日(曜)）
+        const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const date = now.getDate();
+        const weekday = weekdays[now.getDay()];
+        const formattedDate = `${year}年${month}月${date}日(${weekday})`;
+
+        const mainDate = document.getElementById('main-date');
+        if (mainDate) {
+            mainDate.textContent = formattedDate;
+        }
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime(); // 初回即時反映
+</script>
 @endsection

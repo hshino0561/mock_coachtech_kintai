@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -30,7 +31,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        // 'remember_token',
     ];
 
     /**
@@ -40,15 +41,31 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_first_login' => 'boolean',
     ];
+
+    /**
+     * ユーザーの勤怠を取得
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attendances(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Attendance::class);
+    }
 
     /**
      * ユーザーに紐づく休憩記録（BreakLog）のリレーション
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function breakLogs()
+    public function breakLogs(): HasMany
     {
         return $this->hasMany(BreakLog::class);
+    }
+
+    public function stampCorrectionRequests(): HasMany
+    {
+        return $this->hasMany(StampCorrectionRequest::class);
     }
 }

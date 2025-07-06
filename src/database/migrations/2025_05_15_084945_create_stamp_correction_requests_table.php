@@ -18,10 +18,7 @@ return new class extends Migration
             $table->date('attendance_date')->nullable();
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
-            $table->time('break_start')->nullable();
-            $table->time('break_end')->nullable();
             $table->string('memo')->nullable(); // 備考
-            $table->text('reason')->nullable();
             $table->string('status')->default('pending'); // 承認ステータス
             $table->timestamps();
         });

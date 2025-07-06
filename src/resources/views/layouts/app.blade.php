@@ -22,25 +22,31 @@
             $user = Auth::user();
             $work_status = $user->work_status ?? 'before_work';
             $isAttendancePage = request()->is('attendance');
+
+            // ? メール認証画面かどうか（ナビ非表示判定）
+            $hideNav = request()->routeIs('verification.notice');
         @endphp
 
+        @unless ($hideNav)
         <nav class="nav-bar">
             <ul>
-                {{-- 条件：URLが /attendance かつ 勤務終了済み --}}
                 @if ($isAttendancePage && $work_status === 'after_work')
                     <li><a href="{{ url('/attendance/list') }}">今月の出勤一覧</a></li>
                     <li><a href="{{ url('/stamp_correction_request/list') }}">申請一覧</a></li>
-
-                {{-- 条件：他のページ（URLが /attendance 以外） --}}
                 @else
                     <li><a href="{{ url('/attendance') }}">勤怠</a></li>
                     <li><a href="{{ url('/attendance/list') }}">勤怠一覧</a></li>
-                    <li><a href="{{ url('/stamp_correction_request/list') }}">申請</a></li>
+                    <li><a href="{{ route('stamp_correction_request.list') }}">申請</a></li>
                 @endif
-
-                <li><a href="{{ url('/logout') }}">ログアウト</a></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="logout-link">ログアウト</button>
+                        </form>
+                    </li>
             </ul>
         </nav>
+        @endunless
         @endauth
     </header>
 

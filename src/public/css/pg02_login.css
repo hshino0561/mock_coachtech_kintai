@@ -1,89 +1,128 @@
-/* 画面全体に中央配置 */
+/* ===== 共通設定 ===== */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
 }
 
-/* ログインフォームコンテナ */
+/* ===== ラッパー（画面中央に縦横中央配置） ===== */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* ===== ログインフォーム全体 ===== */
 .login-container {
     width: 100%;
-    max-width: 400px;
-    margin-top: 100px;
-    text-align: left;
+    max-width: 680px;
 }
 
-/* タイトル */
-.login-container h2 {
+/* ===== タイトル（中央配置） ===== */
+.login-title {
     text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 40px;
-    color: #000;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+    color: #000000;
+    margin-bottom: 60px;
 }
 
-/* ラベルとインプット */
-.login-container label {
+/* ===== ラベル ===== */
+.login-label {
     display: block;
+    font-weight: 700;
+    font-size: 20px;
     margin-bottom: 8px;
-    font-weight: bold;
-    font-size: 14px;
-    color: #000;
+    color: #000000;
 }
 
-.login-container input[type="email"],
-.login-container input[type="password"] {
+/* ===== インプットフィールド ===== */
+.login-input {
     width: 100%;
+    height: 40px;
     padding: 10px;
-    border: 1px solid #000;
-    border-radius: 4px;
-    margin-bottom: 30px;
     font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    margin-bottom: 60px;
     box-sizing: border-box;
 }
 
-/* エラーメッセージ */
+/* ラベルとエラーを横並び */
+.label-error-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 0px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* ===== エラーメッセージ ===== */
 .error {
     color: red;
     font-size: 14px;
-    margin-top: -20px;
-    margin-bottom: 20px;
-}
-
-/* ログインボタン */
-.login-container button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
     font-weight: bold;
-    background-color: #000;
-    color: #fff;
+    margin-top: -4px;
+}
+
+/* ===== ログインボタン ===== */
+button[type="submit"] {
+    width: 100%;
+    height: 50px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    margin-top: 16px;
 }
 
-.login-container button[type="submit"]:hover {
-    background-color: #333;
+button[type="submit"]:hover {
+    background-color: #333333;
 }
 
-/* 会員登録リンク */
+/* ===== 会員登録リンク ===== */
 .register-link {
+    display: block;
     text-align: center;
     margin-top: 20px;
-}
-
-.register-link a {
-    color: #007bff;
-    font-size: 14px;
+    font-size: 16px;
+    color: #0073CC;
     text-decoration: none;
 }
 
-.register-link a:hover {
-    text-decoration: underline;
+/* ===== レスポンシブ対応：スマホ用微調整（任意） ===== */
+@media screen and (max-width: 480px) {
+    .login-title {
+        font-size: 28px;
+        margin-bottom: 24px;
+    }
+
+    .login-label {
+        font-size: 18px;
+    }
+
+    .login-input {
+        height: 50px;
+        font-size: 14px;
+    }
+
+    button[type="submit"] {
+        font-size: 20px;
+        height: 50px;
+    }
+
+    .register-link {
+        font-size: 14px;
+    }
 }

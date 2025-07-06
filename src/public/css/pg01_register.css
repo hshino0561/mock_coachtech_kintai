@@ -1,75 +1,134 @@
+/* ===== ベース設定 ===== */
+body {
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== レイアウトラッパー：中央寄せ＆パディング対応 ===== */
 .register-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px 0;
-}
-
-.register-box {
-    width: 100%;
-    max-width: 400px;
     padding: 40px 20px;
-    background-color: #fff;
 }
 
+/* ===== 登録フォーム全体の幅制御と中央配置 ===== */
+.register-container {
+    width: 100%;
+    max-width: 680px;
+}
+
+/* ===== タイトル（Figma準拠） ===== */
 .register-title {
-    font-size: 24px;
     text-align: center;
-    font-weight: bold;
-    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 15px;
+    color: #000000;
+    margin-bottom: 45px;
+}
+
+/* ===== ラベル共通 ===== */
+.form-label {
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    margin-bottom: 8px;
+    color: #000000;
+}
+
+/* ===== 入力欄共通（ラベルとの距離感含む） ===== */
+.form-input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 36px;
+}
+
+/* ラベルとエラーを横並び */
+.label-error-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 0px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
-label {
-    display: block;
+/* ===== エラーメッセージ ===== */
+.error {
+    color: red;
+    font-size: 14px;
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-top: 0px;
 }
 
-input {
+/* ===== 登録ボタン ===== */
+.register-button {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #000;
-    border-radius: 3px;
-    font-size: 16px;
-}
-
-button {
-    width: 100%;
-    background-color: #000;
-    color: #fff;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 12px;
+    height: 50px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 31px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-}
-
-/* button:hover {
-    opacity: 0.9;
-} */
-
-.login-link {
-    text-align: center;
     margin-top: 20px;
 }
 
+.register-button:hover {
+    background-color: #333333;
+}
+
+/* ===== ログインリンク ===== */
+.login-link {
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    color: #0073CC;
+    margin-top: 25px;
+}
+
 .login-link a {
-    color: #3490dc;
-    font-size: 14px;
+    color: #0073CC;
     text-decoration: none;
 }
 
-.login-link a:hover {
-    text-decoration: underline;
-}
+/* ===== スマホ用レスポンシブ微調整（任意） ===== */
+@media screen and (max-width: 480px) {
+    .register-title {
+        font-size: 28px;
+        margin-bottom: 40px;
+    }
 
-.error {
-    color: red;
-    font-size: 0.9em;
-    margin-top: 4px;
+    .form-label {
+        font-size: 18px;
+    }
+
+    .form-input {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .register-button {
+        font-size: 20px;
+        height: 50px;
+    }
+
+    .login-link {
+        font-size: 16px;
+    }
 }
