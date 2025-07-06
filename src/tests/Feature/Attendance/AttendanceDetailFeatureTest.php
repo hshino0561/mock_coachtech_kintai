@@ -16,38 +16,40 @@ class AttendanceDetailFeatureTest extends TestCase
 
     public function test_10_勤怠詳細情報取得機能()
     {
+        // ユーザー作成
         /** @var \App\Models\User $user */
-        $user = User::whereHas('attendances', function ($q) {
-                $q->whereNotNull('date')
-                  ->whereNotNull('start_time')
-                  ->whereNotNull('end_time')
-                  ->whereHas('breakLogs');
-            })
-            ->latest()
-            ->firstOrFail();
-    
-        $this->assertNotNull($user, 'ユーザー情報が取得できませんでした');
+        $user = User::factory()->create([
+            'name' => 'テストユーザー',
+        ]);
+
+        // 勤怠データ作成
+        /** @var \App\Models\Attendance $attendance */
+        $attendance = Attendance::factory()->create([
+            'user_id'    => $user->id,
+            'date'       => now()->startOfDay(),
+            'start_time' => '08:00:00',
+            'end_time'   => '17:00:00',
+            'memo'       => 'テストメモ',
+        ]);
+
+        // 休憩データ作成
+        /** @var \App\Models\BreakLog $break */
+        $break = BreakLog::factory()->create([
+            'attendance_id' => $attendance->id,
+            'user_id'       => $user->id,
+            // 'break_date'    => $attendance->date,
+            'break_start'   => '12:00:00',
+            'break_end'     => '12:30:00',
+        ]);
+
+        // 認証状態に設定
         $this->actingAs($user);
-    
-        /** @var \App\Models\Attendance|null $attendance */
-        $attendance = $user->attendances()
-            ->whereNotNull('date')
-            ->whereNotNull('start_time')
-            ->whereNotNull('end_time')
-            ->whereHas('breakLogs')
-            ->latest()
-            ->first();
-    
-        $this->assertNotNull($attendance, '勤怠情報が取得できませんでした');
-    
-        /** @var \App\Models\BreakLog|null $break */
-        $break = \App\Models\BreakLog::where('attendance_id', $attendance->id)->first();
-        $this->assertNotNull($break, '休憩情報が取得できませんでした');
-    
+
+        // 勤怠詳細画面にアクセス
         $response = $this->get('/attendance/' . $attendance->id);
         $response->assertStatus(200);
-    
-        // 表示確認
+
+        // 表示確認（文字列の存在確認）
         $response->assertSee($user->name);
         $response->assertSee($attendance->date->format('Y年'));
         $response->assertSee($attendance->date->format('n月j日'));
