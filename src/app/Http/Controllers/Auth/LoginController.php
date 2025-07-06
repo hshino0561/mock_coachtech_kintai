@@ -4,10 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
     // ログイン画面の表示
     public function showLoginForm()
     {
@@ -15,24 +22,35 @@ class LoginController extends Controller
     }
 
     // ログイン処理
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email'    => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
+        $credentials = $request->only(['email', 'password']);
+    
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/attendance'); // ログイン後の遷移先
+        
+            \Log::debug('ログイン成功:', [
+                'user' => Auth::user(),
+                'session_id' => session()->getId(),
+                'session_all' => session()->all(),
+            ]);
+        
+            /** @var User $user */
+            $user = Auth::user();
+        
+            if (! $user->hasVerifiedEmail()) {
+                return redirect()->route('verification.notice');
+            }
+        
+            return redirect()->route('attendance.show');
         }
-
+    
         return back()->withErrors([
-            'email' => 'メールアドレスまたはパスワードが正しくありません。',
-        ])->onlyInput('email');
+            'email' => '認証情報が正しくありません。',
+        ]);
     }
 
-    // ログアウト処理（任意）
+    // ログアウト処理
     public function logout(Request $request)
     {
         Auth::logout();

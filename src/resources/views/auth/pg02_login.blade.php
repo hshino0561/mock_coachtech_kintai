@@ -7,37 +7,37 @@
 @endsection
 
 @section('content')
+<div class="login-wrapper">
     <div class="login-container">
-        <h2>ログイン</h2>
+        <h2 class="login-title">ログイン</h2>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <!-- メールアドレス -->
             <div class="form-group">
-                <label for="email">メールアドレス</label>
-                <input type="email" id="email" name="email" value="{{ old('email') }}" required>
-                @error('email')
-                    <div class="error">{{ $message }}</div>
-                @enderror
+                <div class="label-error-wrapper">
+                    <label for="login" class="login-label">メールアドレス</label>
+                        @error('login')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                </div>
+                <input type="text" name="login" id="login" class="login-input" value="{{ old('login') }}">
             </div>
 
-            <!-- パスワード -->
             <div class="form-group">
-                <label for="password">パスワード</label>
-                <input type="password" id="password" name="password" required>
-                @error('password')
-                    <div class="error">{{ $message }}</div>
-                @enderror
+                <div class="label-error-wrapper">
+                    <label for="password" class="login-label">パスワード</label>
+                        @error('password')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                </div>    
+                <input type="password" name="password" id="password" class="login-input">
             </div>
 
-            <!-- ログインボタン -->
             <button type="submit">ログインする</button>
         </form>
 
-        <!-- 会員登録リンク -->
-        <div class="register-link">
-            <a href="{{ route('register') }}">会員登録はこちら</a>
-        </div>
+        <a href="{{ route('register') }}" class="register-link">会員登録はこちら</a>
     </div>
+</div>
 @endsection

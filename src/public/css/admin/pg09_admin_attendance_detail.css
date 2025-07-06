@@ -1,0 +1,259 @@
+body {
+    background-color: #F0EFF2;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.attendance-detail-wrapper {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.detail-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+}
+
+.detail-title {
+    font-size: 30px;
+    font-weight: bold;
+    border-left: 8px solid #000;
+    padding-left: 10px;
+}
+
+.detail-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    height: 36px;
+    background-color: #000;
+}
+
+.detail-card {
+    background: #fff;
+    border: 1px solid #E1E1E1;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* 各行のレイアウト */
+.detail-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 20px 50px;
+    border-bottom: 3px solid #E1E1E1;
+}
+
+.detail-row.date {
+    grid-template-columns: 3.8fr 1fr 1fr 2fr 1.6fr;
+    align-items: center;
+}
+
+/* 最後の備考は線なし */
+.detail-row.memo-row {
+    border-bottom: none;
+}
+
+.label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #737373;
+    letter-spacing: 0.15em;
+    min-width: 90px;
+}
+
+.value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: 0.15em;
+    padding: 4px 12px;
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;
+    min-width: 80px;
+    text-align: center;
+    background-color: #fff;
+}
+
+/* 名前・日付表示など囲い不要用 */
+.value.no-border {
+    border: none;
+    background: transparent;
+    padding: 0;
+    min-width: auto;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* 表示専用テキスト向け（囲いなしでフォント維持） */
+.text,
+.year-cell {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #000;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.detail-row input[type="time"] {
+    justify-self: center;
+}
+
+.value[type="time"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    background-color: #fff;
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;
+    width: 100px;
+    height: 32px;
+    padding: 4px 8px;
+    margin-right: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 0.15em;
+    text-align: center;
+}
+
+/* Firefox対策：数字スピンボタン除去 */
+input[type="time"]::-webkit-inner-spin-button,
+input[type="time"]::-webkit-clear-button,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+/* Edge・Chromeでも強制非表示 */
+input[type="time"]::-ms-clear,
+input[type="time"]::-ms-expand {
+    display: none;
+}
+
+input[type="time"].empty-time {
+    color: transparent;
+    position: relative;
+}
+
+input[type="time"].empty-time::before {
+    content: "--:--";
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #fff;
+    pointer-events: none;
+}
+
+.separator {
+    display: inline-block;
+    margin: 0 16px;
+    text-align: center;
+    font-weight: bold;
+    color: #000;
+}
+
+.detail-row.memo-row {
+    display: grid;
+    grid-template-columns: 2fr 4.5fr;
+    border-bottom: none;
+    align-items: center;
+}
+
+.memo-box {
+    width: 340px;
+    height: 72px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #000000;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+    background-color: #fff;
+    text-align: left;
+    resize: none;
+}
+
+.value.no-border.name-text {
+    text-align: left;
+    white-space: nowrap;
+}
+
+.value.no-border.memo-text {
+    text-align: left;
+    padding-left: 25px;
+}
+
+/* 修正ボタン用 */
+.edit-button-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-edit {
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    width: 130px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-edit:hover {
+    background-color: #333;
+}
+
+.readonly-memo {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #f1948a;
+    text-align: right;
+}
+
+/* 親要素の相対位置指定を追加 */
+.detail-title-container {
+    position: relative;
+}
+
+/* エラーメッセージ全体の外枠 */
+.global-errors {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    margin-top: 30px;
+    max-width: 350px;
+}
+
+/* エラー表示領域（上部にまとまって表示） */
+.error-msg {
+    color: #f00;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: right;
+    white-space: nowrap;
+}
