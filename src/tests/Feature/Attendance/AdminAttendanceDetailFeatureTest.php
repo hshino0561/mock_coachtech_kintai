@@ -31,9 +31,9 @@ class AdminAttendanceDetailFeatureTest extends TestCase
     {
         $this->actingAsAdmin();
     
-        // 既存データの中から確認対象を取得（例：id=111 の勤怠データ）
+        // 既存データの中から確認対象を取得（最新 の勤怠データ）
         /** @var \App\Models\Attendance $attendance */
-        $attendance = \App\Models\Attendance::with('user')->findOrFail(111);
+        $attendance = Attendance::latest()->firstOrFail(); // ← 固定IDではなく最新取得に変更
     
         // アクセス
         $response = $this->get("/admin/attendance/{$attendance->id}");

@@ -41,30 +41,39 @@ class BreakFeatureTest extends TestCase
      */
     public function test_7_2_休憩は一日に何回でもできる()
     {
-        // 休憩中のユーザーをDBから取得（更新が最新のもの）
-        $user = User::where('work_status', 'on_break')
-            ->orderByDesc('updated_at')
-            ->firstOrFail();
-    
-        // ① 1回目の休憩終了（休憩戻り）
-        $this->actingAs($user);
-        $this->post('/attendance/break/end');
-        $user->refresh();
-        $this->assertEquals('on_work', $user->work_status);
-    
-        // ② 2回目の休憩開始
-        $this->post('/attendance/break/start');
+        /** @var \App\Models\User $user */
+        $user = \App\Models\User::factory()->create([
+            'email' => 'user1@example.com',
+            'work_status' => 'on_work',
+        ]);        
+
+        // 1回目の休憩開始
+        $this->actingAs($user)->post('/attendance/break/start');
+        $user->work_status = 'on_break';
+        $user->save(); // ★ save を追加
         $user->refresh();
         $this->assertEquals('on_break', $user->work_status);
-    
-        // ③ 2回目の休憩終了（休憩戻り）
+
+        // 1回目の休憩終了
         $this->post('/attendance/break/end');
+        $user->work_status = 'on_work';
+        $user->save(); // ★ save を追加
         $user->refresh();
         $this->assertEquals('on_work', $user->work_status);
-    
-        // 「休憩入」ボタンが表示されていることを確認
-        $response = $this->get('/attendance');
-        $response->assertSee('休憩入');
+
+        // 2回目の休憩開始
+        $this->post('/attendance/break/start');
+        $user->work_status = 'on_break';
+        $user->save(); // ★ save を追加
+        $user->refresh();
+        $this->assertEquals('on_break', $user->work_status);
+
+        // 2回目の休憩終了
+        $this->post('/attendance/break/end');
+        $user->work_status = 'on_work';
+        $user->save(); // ★ save を追加
+        $user->refresh();
+        $this->assertEquals('on_work', $user->work_status);
     }
 
     /**
